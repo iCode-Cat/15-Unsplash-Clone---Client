@@ -3,5 +3,5 @@
 @API https://unsplash-devcha-api.herokuapp.com/api/image
 
 @GET
-@POST {image: image_link}
-@DELETE {id:image_id}
+@POST {label,image: image_link}
+@DELETE {id:image_id, password}

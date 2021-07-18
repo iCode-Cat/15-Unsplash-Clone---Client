@@ -1,10 +1,11 @@
-import './App.css';
+import Home from './Page/Home';
+import './App.scss';
 
 function App() {
   return (
-    <div>
-      <h1>HELLo</h1>
-    </div>
+    <>
+      <Home />
+    </>
   );
 }
 

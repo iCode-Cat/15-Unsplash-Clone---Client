@@ -1,15 +1,21 @@
 import React from 'react';
-import { postImages, getImages } from '../Redux/imagesSlice';
+import { postImages, getImages, deleteImage } from '../Redux/imagesSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import Header from '../Components/Header';
+
+// postImages({ label: 'hello', image: 'yolink' })
+// getImages()
+// deleteImage({id: '60f42428fbc73600154466e9',password: 'juju123'})
 
 const Home = () => {
   const dispatch = useDispatch();
   return (
-    <main>
-      <article className='main-wrapper'>
-        <h1 onClick={() => dispatch(postImages('hello', 'link'))}>HELLO</h1>
-      </article>
-    </main>
+    <>
+      <Header />
+      <main>
+        <article className='main-wrapper'></article>
+      </main>
+    </>
   );
 };
 

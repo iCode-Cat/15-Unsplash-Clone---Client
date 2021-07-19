@@ -7,12 +7,17 @@
   font-weight: 500;
 }
 
-.contained {
+.fullWidth {
+  width: 100%;
+}
+
+.primary {
   background: #3db46d;
   color: #fff;
   font-weight: 700;
 }
 
-.fullWidth {
-  width: 100%;
+.sm {
+  min-width: unset;
+  padding: 1.4rem 2.6rem;
 }

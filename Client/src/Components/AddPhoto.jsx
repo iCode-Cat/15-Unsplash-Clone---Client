@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { popupAdd } from '../Redux/popupSlice';
 import { postImages } from '../Redux/imagesSlice';
 import Button from './Button';
-const AddPhoto = () => {
+const DeletePhoto = () => {
   const [imageObject, setImageObject] = useState({
     label: null,
     image: null,
@@ -13,10 +13,22 @@ const AddPhoto = () => {
   const submitHandler = (field, e) => {
     setImageObject({ ...imageObject, [field]: e.target.value });
   };
+
+  const imagePostHandler = () => {
+    const { label, image } = imageObject;
+    if (
+      label === null ||
+      image === null ||
+      !['.png', '.jpg', '.jpeg', '.svg'].some((slug) => image.includes(slug))
+    )
+      return;
+    dispatch(postImages(imageObject, dispatch));
+    setImageObject({ label: null, image: null });
+  };
+
   console.log(imageObject);
   const dispatch = useDispatch();
   const value = useSelector((state) => state);
-  console.log(value);
   return (
     <div className='popup'>
       <div className='popup-add'>
@@ -45,8 +57,7 @@ const AddPhoto = () => {
           </span>
           <span
             onClick={() => {
-              dispatch(postImages(imageObject));
-              setImageObject({ label: null, image: null });
+              imagePostHandler();
             }}
           >
             <Button text='Submit' type='primary' size='sm' />
@@ -57,4 +68,4 @@ const AddPhoto = () => {
   );
 };
 
-export default AddPhoto;
+export default DeletePhoto;

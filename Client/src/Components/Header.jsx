@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <header className='header'>
       <div className='header-profile'>
-        <span class='header-profile-icon material-icons'>person</span>
+        <span className='header-profile-icon material-icons'>person</span>
         <p className='header-profile-name'>MY Unsplash</p>
         <p className='header-profile-label'>devchallenges.io</p>
       </div>

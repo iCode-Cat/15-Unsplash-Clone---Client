@@ -21,6 +21,9 @@ button {
 }
 
 #root {
+  margin: 0 auto;
+  max-width: 1440px;
+  min-height: 101vh;
   padding: 2rem;
 }
 
@@ -34,4 +37,14 @@ input {
   border: 1px solid #bdbdbd;
   border-radius: 12px;
   outline: none;
+}
+
+img {
+  width: 100%;
+}
+
+@media (min-width: 50em) {
+  #root {
+    padding: 4rem 10rem;
+  }
 }

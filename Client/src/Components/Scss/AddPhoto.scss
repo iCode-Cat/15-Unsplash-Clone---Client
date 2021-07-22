@@ -3,9 +3,8 @@
   justify-content: center;
   padding: 25rem 2rem 5rem 2rem;
   width: 100%;
-  min-height: 106vh;
   z-index: 999;
-  position: absolute;
+  position: fixed;
   background: rgba(0, 0, 0, 0.25);
   inset: 0;
   &-add {

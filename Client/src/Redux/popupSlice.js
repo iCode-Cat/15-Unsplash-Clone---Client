@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   popup_add: false,
   popup_delete: false,
+  delete_id: null,
 };
 
 export const popupSlice = createSlice({

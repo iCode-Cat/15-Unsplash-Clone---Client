@@ -18,7 +18,7 @@ const Image = ({ _id, label, image_link }) => {
         <div className='img-item-box-control'>
           <span
             onClick={() => {
-              dispatch(popupDelete());
+              dispatch(popupDelete(_id, dispatch));
               dispatch(deletePhoto(_id));
             }}
           >

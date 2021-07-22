@@ -12,6 +12,8 @@ html {
 
 body {
   font-size: 1.6rem;
+  position: relative;
+  min-height: 100vh !important;
 }
 
 button {
@@ -21,6 +23,8 @@ button {
 }
 
 #root {
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
   max-width: 1440px;
   min-height: 101vh;

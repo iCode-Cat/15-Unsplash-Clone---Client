@@ -15,7 +15,7 @@ const AddPhoto = () => {
   const deleteId = useSelector((state) => state.image.delete_id);
 
   return (
-    <div className='popup'>
+    <div className=' delete-popup popup'>
       <div className='popup-add'>
         <header className='popup-add-header'>Are You Sure?</header>
         <div className='popup-input-wrapper'>

@@ -4,6 +4,7 @@ import './App.scss';
 import AddPhoto from './Components/AddPhoto';
 import { useSelector } from 'react-redux';
 import DeletePhoto from './Components/DeletePhoto';
+import Loader from './Components/Loader';
 
 const scrollHandler = (add) => {
   // Prevent Scroll
@@ -20,7 +21,7 @@ const scrollHandler = (add) => {
 
 function App() {
   const add = useSelector((state) => state.popup);
-
+  const loader = useSelector((state) => state.image.loader);
   scrollHandler(add);
 
   return (

@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { popupAdd } from './popupSlice';
+import { popupAdd, popupDelete } from './popupSlice';
 import axios from 'axios';
 
 const initialState = {
   value: 0,
-  loader: false,
+  loader: true,
   delete_id: null,
+  deletedAlready: null,
+  keyword: '',
 };
 
 export const getImages = createAsyncThunk('images', async () => {
@@ -30,12 +32,12 @@ export const postImages = createAsyncThunk(
 
 export const deleteImage = createAsyncThunk(
   'images/delete',
-  async (deleteObject) => {
-    console.log(deleteObject);
+  async (deleteObject, { dispatch }) => {
     const response = await axios.delete(
       'https://unsplash-devcha-api.herokuapp.com/api/image',
       { data: deleteObject }
     );
+    dispatch(popupDelete());
     return response.data;
   }
 );
@@ -49,6 +51,10 @@ export const imagesSlice = createSlice({
     },
     deletePhoto: (state, action) => {
       state.delete_id = action.payload;
+    },
+    // State for search
+    keyword: (state, action) => {
+      state.keyword = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -65,11 +71,11 @@ export const imagesSlice = createSlice({
     // Delete a image
     builder.addCase(deleteImage.fulfilled, (state, action) => {
       state.loader = false;
-      console.log(action.payload);
+      state.deletedAlready = state.delete_id;
     });
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { loader, deletePhoto } = imagesSlice.actions;
+export const { loader, deletePhoto, keyword } = imagesSlice.actions;
 export default imagesSlice.reducer;

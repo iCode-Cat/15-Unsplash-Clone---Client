@@ -18,8 +18,9 @@
     &-input {
       height: 55px;
       padding: 1.8rem;
-      color: #bdbdbd;
+      color: #8f8f8f;
       margin-top: 1rem;
+     
     }
     &-label {
       font-size: 1.4rem;
@@ -35,4 +36,8 @@
     margin-top: 1.4rem;
     justify-self: flex-end;
   }
+}
+
+input::placeholder {
+  opacity: 70%;
 }

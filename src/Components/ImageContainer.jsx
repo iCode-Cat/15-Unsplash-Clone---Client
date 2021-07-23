@@ -9,9 +9,11 @@ const ImageContainer = () => {
   const images = useSelector((state) => state.image.value);
   const keyword = useSelector((state) => state.image.keyword);
   const deleteId = useSelector((state) => state.image.deletedAlready);
+  const [allImages, setAllImages] = useState([]);
   const [loadedAll, setLoadedAll] = useState(false);
-  const [deleteItem, setDeleteItem] = useState([{ id: null }]);
-  console.log(deleteItem);
+  const [lazy, setLazy] = useState(false);
+  const [deleteItem, setDeleteItem] = useState([]);
+
   // Image preload
   const cacheImages = async () => {
     const promises = await images.map((src) => {
@@ -23,7 +25,16 @@ const ImageContainer = () => {
       });
     });
     await Promise.all(promises);
-    setLoadedAll(true);
+    setAllImages(images);
+    setTimeout(() => {
+      setLazy(true);
+      setLoadedAll(true);
+    }, 1500);
+  };
+
+  const deleteImageHandler = () => {
+    const filter = allImages.filter((image, index) => image._id !== deleteItem);
+    setAllImages(filter);
   };
 
   useEffect(() => {
@@ -35,14 +46,22 @@ const ImageContainer = () => {
     if (images.length > 0) {
       cacheImages();
     }
-    if (deleteId !== null) {
-      setDeleteItem([...deleteItem, { id: deleteId }]);
-    }
   }, [images]);
+
+  useEffect(() => {
+    if (deleteId !== null) {
+      setDeleteItem(deleteId);
+    }
+  }, [deleteId]);
+
+  useEffect(() => {
+    deleteImageHandler();
+  }, [deleteItem]);
+
   return (
     <section className='image-container'>
       {loadedAll ? (
-        images
+        allImages
           .filter(
             (image, index) =>
               image.label.toUpperCase().includes(keyword.toUpperCase()) ||
@@ -50,7 +69,7 @@ const ImageContainer = () => {
           )
           .reverse()
           .map((image, index) => (
-            <ImageItem key={image._id} {...image} index={index} />
+            <ImageItem lazy={lazy} key={image._id} {...image} index={index} />
           ))
       ) : (
         <Loader />

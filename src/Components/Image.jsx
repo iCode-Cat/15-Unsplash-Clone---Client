@@ -4,12 +4,13 @@ import { popupDelete } from '../Redux/popupSlice';
 import { deletePhoto } from '../Redux/imagesSlice';
 import Button from './Button';
 import './Scss/Image.scss';
-const Image = ({ _id, label, image_link }) => {
+const Image = ({ _id, label, image_link, lazy }) => {
   const dispatch = useDispatch();
 
   const [controller, setController] = useState(false);
   return (
     <div
+      style={{ display: lazy ? 'block' : 'none' }}
       onMouseEnter={() => setController(true)}
       onMouseLeave={() => setController(false)}
       className='img-item-box'
